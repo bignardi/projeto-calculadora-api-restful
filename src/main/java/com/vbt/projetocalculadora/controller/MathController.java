@@ -1,66 +1,47 @@
 package com.vbt.projetocalculadora.controller;
 
 import com.vbt.projetocalculadora.controller.bo.MathBO;
+import com.vbt.projetocalculadora.model.Person;
+import com.vbt.projetocalculadora.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import com.vbt.projetocalculadora.exception.MathOperationException;
 
+import java.util.List;
+
 @RestController
+@RequestMapping("/person")
 public class MathController {
 
-    private final MathBO mathBO = new MathBO();
+    // Injeção de Depenêrncia
+    @Autowired
+    private PersonService service;
 
-    // Sum
-    @RequestMapping(value = "/sum/{numberOne}/{numberTwo}", method = RequestMethod.GET)
-    public Double sum(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
-            throws Exception {
-        return mathBO.sum(numberOne, numberTwo);
+    @GetMapping
+    public List<Person> findAll() {
+        return service.findAll();
     }
 
-    // Subtraction
-    @RequestMapping(value = "/subtraction/{numberOne}/{numberTwo}", method = RequestMethod.GET)
-    public Double subtraction(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
-            throws Exception {
-        return mathBO.subtraction(numberOne, numberTwo);
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Person findById(@PathVariable("id") String id) {
+        return service.findById(id);
     }
 
-    // Multiplication
-    @RequestMapping(value = "/multiplication/{numberOne}/{numberTwo}", method = RequestMethod.GET)
-    public Double multiplication(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
-            throws Exception {
-        return mathBO.multiplication(numberOne, numberTwo);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Person insert(@RequestBody Person person) {
+        return service.insert(person);
     }
 
-    // Division
-    @RequestMapping(value = "/division/{numberOne}/{numberTwo}", method = RequestMethod.GET)
-    public Double division(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
-            throws Exception {
-        return mathBO.division(numberOne, numberTwo);
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Person update(@RequestBody Person person) {
+        return service.insert(person);
     }
 
-    // Module
-    @RequestMapping(value = "/module/{numberOne}/{numberTwo}", method = RequestMethod.GET)
-    public Double module(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
-            throws Exception {
-        return mathBO.module(numberOne, numberTwo);
-    }
-
-    // Average
-    @RequestMapping(value = "/average/{numberOne}/{numberTwo}", method = RequestMethod.GET)
-    public Double average(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo)
-            throws Exception {
-        return mathBO.average(numberOne, numberTwo);
-    }
-
-    // Square root
-    @RequestMapping(value = "/squareroot/{numberOne}", method = RequestMethod.GET)
-    public Double squareRoot(@PathVariable("numberOne") String numberOne)
-            throws Exception {
-        return mathBO.squareRoot(numberOne);
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable("id") String id) {
+        service.delete(id);
     }
 
 }
