@@ -1,13 +1,12 @@
 package com.vbt.projetocalculadora.controller;
 
-import com.vbt.projetocalculadora.controller.bo.MathBO;
 import com.vbt.projetocalculadora.model.Person;
+import com.vbt.projetocalculadora.repositories.PersonRepository;
 import com.vbt.projetocalculadora.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.vbt.projetocalculadora.exception.MathOperationException;
 
 import java.util.List;
 
@@ -15,9 +14,12 @@ import java.util.List;
 @RequestMapping("/person")
 public class MathController {
 
-    // Injeção de Depenêrncia
+    // Injeção de Dependência
     @Autowired
     private PersonService service;
+
+    @Autowired
+    private PersonRepository repository;
 
     @GetMapping
     public List<Person> findAll() {
@@ -25,7 +27,7 @@ public class MathController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findById(@PathVariable("id") String id) {
+    public Person findById(@PathVariable("id") Long id) {
         return service.findById(id);
     }
 
@@ -40,8 +42,12 @@ public class MathController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable("id") String id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        if (!repository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
         service.delete(id);
+        return ResponseEntity.ok().build();
     }
 
 }

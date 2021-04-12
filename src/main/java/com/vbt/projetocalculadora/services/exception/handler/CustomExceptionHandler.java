@@ -1,4 +1,4 @@
-package com.vbt.projetocalculadora.exception.handler;
+package com.vbt.projetocalculadora.services.exception.handler;
 
 import java.util.Date;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.vbt.projetocalculadora.exception.ExceptionResponse;
-import com.vbt.projetocalculadora.exception.MathOperationException;
+import com.vbt.projetocalculadora.services.exception.ExceptionResponse;
+import com.vbt.projetocalculadora.services.exception.MathOperationException;
 
 @ControllerAdvice
 @RestController

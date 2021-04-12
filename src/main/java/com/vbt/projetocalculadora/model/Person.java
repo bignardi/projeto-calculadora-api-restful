@@ -1,14 +1,30 @@
 package com.vbt.projetocalculadora.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "person")
 public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
+    @Column(name = "first_name", length = 25)
     private String firstName;
+
+    @NotBlank
+    @Column(name = "last_name", length = 45)
     private String lastName;
+
+    @Column(length = 80)
     private String address;
+
+    @Column(length = 6)
     private String gender;
 
     public Person() {

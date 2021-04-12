@@ -1,4 +1,4 @@
-package com.vbt.projetocalculadora.exception;
+package com.vbt.projetocalculadora.services.exception;
 
 import java.io.Serializable;
 import java.util.Date;
