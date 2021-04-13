@@ -1,6 +1,6 @@
 package com.vbt.projetocalculadora.controller.bo;
 
-import com.vbt.projetocalculadora.controller.util.MathOperations;
+import com.vbt.projetocalculadora.util.MathOperations;
 import com.vbt.projetocalculadora.services.exception.MathOperationException;
 
 public class MathBO {

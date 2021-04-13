@@ -1,4 +1,4 @@
-package com.vbt.projetocalculadora.controller.util;
+package com.vbt.projetocalculadora.util;
 
 public class MathOperations {
 

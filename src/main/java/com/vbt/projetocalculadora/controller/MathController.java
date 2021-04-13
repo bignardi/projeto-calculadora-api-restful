@@ -1,6 +1,6 @@
 package com.vbt.projetocalculadora.controller;
 
-import com.vbt.projetocalculadora.model.Person;
+import com.vbt.projetocalculadora.domain.vo.PersonVO;
 import com.vbt.projetocalculadora.repositories.PersonRepository;
 import com.vbt.projetocalculadora.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +22,22 @@ public class MathController {
     private PersonRepository repository;
 
     @GetMapping
-    public List<Person> findAll() {
+    public List<PersonVO> findAll() {
         return service.findAll();
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findById(@PathVariable("id") Long id) {
+    public PersonVO findById(@PathVariable("id") Long id) {
         return service.findById(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person insert(@RequestBody Person person) {
+    public PersonVO insert(@RequestBody PersonVO person) {
         return service.insert(person);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person update(@RequestBody Person person) {
+    public PersonVO update(@RequestBody PersonVO person) {
         return service.insert(person);
     }
 
