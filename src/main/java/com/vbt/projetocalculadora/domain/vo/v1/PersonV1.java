@@ -1,21 +1,31 @@
-package com.vbt.projetocalculadora.domain.vo;
+package com.vbt.projetocalculadora.domain.vo.v1;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public class PersonVO implements Serializable {
+// Ajusta a ordem dos resultados no JSON
+@JsonPropertyOrder({"id", "firs_tName", "last_Name", "address", "gender"})
+public class PersonV1 implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+
+    @JsonProperty("first_name")
     private String firstName;
+
+    @JsonProperty("last_name")
     private String lastName;
+
     private String address;
     private String gender;
 
-    public PersonVO() {
+    public PersonV1() {
     }
 
-    public PersonVO(Long id, String firstName, String lastName, String address, String gender) {
+    public PersonV1(Long id, String firstName, String lastName, String address, String gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -67,12 +77,12 @@ public class PersonVO implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PersonVO personVO = (PersonVO) o;
-        return Objects.equals(id, personVO.id)
-                && Objects.equals(firstName, personVO.firstName)
-                && Objects.equals(lastName, personVO.lastName)
-                && Objects.equals(address, personVO.address)
-                && Objects.equals(gender, personVO.gender);
+        PersonV1 personV1 = (PersonV1) o;
+        return Objects.equals(id, personV1.id)
+                && Objects.equals(firstName, personV1.firstName)
+                && Objects.equals(lastName, personV1.lastName)
+                && Objects.equals(address, personV1.address)
+                && Objects.equals(gender, personV1.gender);
     }
 
     @Override
