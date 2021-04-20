@@ -1,34 +1,23 @@
-package com.vbt.projetocalculadora.domain.vo.v2;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+package com.vbt.projetocalculadora.domain.vo.v3;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-// Ajusta a ordem dos resultados no JSON
-@JsonPropertyOrder({"id", "firs_tName", "last_Name", "address", "gender", "birthday"})
-public class PersonV2 implements Serializable {
-
+public class PersonV3 implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-
-    @JsonProperty("first_name")
     private String firstName;
-
-    @JsonProperty("last_name")
     private String lastName;
-
     private String address;
     private String gender;
     private Date birthday;
 
-    public PersonV2() {
+    public PersonV3() {
     }
 
-    public PersonV2(Long id, String firstName, String lastName, String address, String gender, Date birthday) {
+    public PersonV3(Long id, String firstName, String lastName, String address, String gender, Date birthday) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -89,13 +78,13 @@ public class PersonV2 implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PersonV2 personV2 = (PersonV2) o;
-        return Objects.equals(id, personV2.id)
-                && Objects.equals(firstName, personV2.firstName)
-                && Objects.equals(lastName, personV2.lastName)
-                && Objects.equals(address, personV2.address)
-                && Objects.equals(gender, personV2.gender)
-                && Objects.equals(birthday, personV2.birthday);
+        PersonV3 personV3 = (PersonV3) o;
+        return Objects.equals(id, personV3.id)
+                && Objects.equals(firstName, personV3.firstName)
+                && Objects.equals(lastName, personV3.lastName)
+                && Objects.equals(address, personV3.address)
+                && Objects.equals(gender, personV3.gender)
+                && Objects.equals(birthday, personV3.birthday);
     }
 
     @Override

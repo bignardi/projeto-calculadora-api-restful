@@ -1,7 +1,6 @@
 package com.vbt.projetocalculadora.controller;
 
-import com.vbt.projetocalculadora.domain.vo.v1.PersonV1;
-import com.vbt.projetocalculadora.domain.vo.v2.PersonV2;
+import com.vbt.projetocalculadora.domain.vo.v3.PersonV3;
 import com.vbt.projetocalculadora.repositories.PersonRepository;
 import com.vbt.projetocalculadora.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,8 @@ public class MathController {
     @Autowired
     private PersonRepository repository;
 
-    // Será descontinuada em...
+    // V1, e v2 descontinuados. Lembrar de ajustar as versões nos pacotes.
+    /*
     @GetMapping("/v1")
     public List<PersonV1> findAll() {
         return service.findAll ();
@@ -50,7 +50,7 @@ public class MathController {
 
     @PutMapping("/v1")
     public PersonV1 update(@RequestBody PersonV1 person) {
-        return service.insert(person);
+        return service.update(person);
     }
 
     @DeleteMapping(value = "/v1/{id}")
@@ -59,6 +59,38 @@ public class MathController {
             return ResponseEntity.notFound().build();
         }
         service.delete(id);
+        return ResponseEntity.ok().build();
+    }
+    */
+
+    // -> Versão 3:
+
+    @GetMapping(value = "/v3", produces = {"application/json", "application/xml"})
+    public List<PersonV3> findAllV3() {
+        return service.findAllV3();
+    }
+
+    @GetMapping(value = "/v3/{id}", produces = {"application/json", "application/xml"})
+    public PersonV3 findByIdV3(@PathVariable("id") Long id) {
+        return service.findByIdV3(id);
+    }
+
+    @PostMapping(value = "/v3", produces = {"application/json", "application/xml"}, consumes = {"application/json", "application/xml"})
+    public PersonV3 insertV3(@RequestBody PersonV3 person) {
+        return service.insertV3(person);
+    }
+
+    @PutMapping(value = "/v3", produces = {"application/json", "application/xml"}, consumes = {"application/json", "application/xml"})
+    public PersonV3 updateV3(@RequestBody PersonV3 person) {
+        return service.updateV3(person);
+    }
+
+    @DeleteMapping(value = "/v3/{id}")
+    public ResponseEntity<Void> deleteV3(@PathVariable("id") Long id) {
+        if (!repository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        service.deleteV3(id);
         return ResponseEntity.ok().build();
     }
 
