@@ -1,9 +1,9 @@
 package com.vbt.projetocalculadora.converter;
 
 import com.vbt.projetocalculadora.converter.mocks.PersonMock;
+import com.vbt.projetocalculadora.converters.adapter.DozerConverter;
 import com.vbt.projetocalculadora.domain.model.Person;
-import com.vbt.projetocalculadora.domain.vo.v1.PersonV1;
-import com.vbt.projetocalculadora.util.converters.DozerConverter;
+import com.vbt.projetocalculadora.domain.vo.v3.PersonV3;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -32,8 +32,8 @@ public class DozerConverterTest {
 
     @Test
     public void parseEntityToVOTest() {
-        PersonV1 output = DozerConverter.parseObject(inputObject.mockEntity(), PersonV1.class);
-        Assertions.assertEquals(Long.valueOf(0L), output.getId());
+        PersonV3 output = DozerConverter.parseObject(inputObject.mockEntity(), PersonV3.class);
+        Assertions.assertEquals(Long.valueOf(0L), output.getKey());
         Assertions.assertEquals("First Name Test0", output.getFirstName());
         Assertions.assertEquals("Last Name Test0", output.getLastName());
         Assertions.assertEquals("Addres Test0", output.getAddress());
@@ -42,26 +42,26 @@ public class DozerConverterTest {
 
     @Test
     public void parseEntityListToVOListTest() {
-        List<PersonV1> outputList = DozerConverter.parseListObjects(inputObject.mockEntityList(), PersonV1.class);
-        PersonV1 outputZero = outputList.get(0);
+        List<PersonV3> outputList = DozerConverter.parseListObjects(inputObject.mockEntityList(), PersonV3.class);
+        PersonV3 outputZero = outputList.get(0);
 
-        Assertions.assertEquals(Long.valueOf(0L), outputZero.getId());
+        Assertions.assertEquals(Long.valueOf(0L), outputZero.getKey());
         Assertions.assertEquals("First Name Test0", outputZero.getFirstName());
         Assertions.assertEquals("Last Name Test0", outputZero.getLastName());
         Assertions.assertEquals("Addres Test0", outputZero.getAddress());
         Assertions.assertEquals("Male", outputZero.getGender());
 
-        PersonV1 outputSeven = outputList.get(7);
+        PersonV3 outputSeven = outputList.get(7);
 
-        Assertions.assertEquals(Long.valueOf(7L), outputSeven.getId());
+        Assertions.assertEquals(Long.valueOf(7L), outputSeven.getKey());
         Assertions.assertEquals("First Name Test7", outputSeven.getFirstName());
         Assertions.assertEquals("Last Name Test7", outputSeven.getLastName());
         Assertions.assertEquals("Addres Test7", outputSeven.getAddress());
         Assertions.assertEquals("Female", outputSeven.getGender());
 
-        PersonV1 outputTwelve = outputList.get(12);
+        PersonV3 outputTwelve = outputList.get(12);
 
-        Assertions.assertEquals(Long.valueOf(12L), outputTwelve.getId());
+        Assertions.assertEquals(Long.valueOf(12L), outputTwelve.getKey());
         Assertions.assertEquals("First Name Test12", outputTwelve.getFirstName());
         Assertions.assertEquals("Last Name Test12", outputTwelve.getLastName());
         Assertions.assertEquals("Addres Test12", outputTwelve.getAddress());

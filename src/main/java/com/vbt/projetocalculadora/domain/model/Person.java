@@ -1,4 +1,4 @@
-package com.vbt.projetocalculadora.model.entities;
+package com.vbt.projetocalculadora.domain.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

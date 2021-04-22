@@ -6,12 +6,14 @@ import com.vbt.projetocalculadora.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/person")
-public class MathController {
+public class PersonController {
 
     // Injeção de Dependência
     @Autowired
@@ -65,24 +67,38 @@ public class MathController {
 
     // -> Versão 3:
 
-    @GetMapping(value = "/v3", produces = {"application/json", "application/xml"})
+    @GetMapping(value = "/v3",
+            produces = {"application/json", "application/xml", "application/x-yaml"})
     public List<PersonV3> findAllV3() {
-        return service.findAllV3();
+        List<PersonV3> personV3 = service.findAllV3();
+        personV3.stream().forEach(p -> p.add(linkTo(methodOn(PersonController.class).findByIdV3(p.getKey())).withSelfRel()));
+        return personV3;
     }
 
-    @GetMapping(value = "/v3/{id}", produces = {"application/json", "application/xml"})
+    @GetMapping(value = "/v3/{id}",
+            produces = {"application/json", "application/xml", "application/x-yaml"})
     public PersonV3 findByIdV3(@PathVariable("id") Long id) {
-        return service.findByIdV3(id);
+        PersonV3 personV3 = service.findByIdV3(id);
+        personV3.add(linkTo(methodOn(PersonController.class).findByIdV3(id)).withSelfRel());
+        return personV3;
     }
 
-    @PostMapping(value = "/v3", produces = {"application/json", "application/xml"}, consumes = {"application/json", "application/xml"})
+    @PostMapping(value = "/v3",
+            produces = {"application/json", "application/xml", "application/x-yaml"},
+            consumes = {"application/json", "application/xml", "application/x-yaml"})
     public PersonV3 insertV3(@RequestBody PersonV3 person) {
-        return service.insertV3(person);
+        PersonV3 personV3 = service.insertV3(person);
+        personV3.add(linkTo(methodOn(PersonController.class).findByIdV3(personV3.getKey())).withSelfRel());
+        return personV3;
     }
 
-    @PutMapping(value = "/v3", produces = {"application/json", "application/xml"}, consumes = {"application/json", "application/xml"})
+    @PutMapping(value = "/v3",
+            produces = {"application/json", "application/xml", "application/x-yaml"},
+            consumes = {"application/json", "application/xml", "application/x-yaml"})
     public PersonV3 updateV3(@RequestBody PersonV3 person) {
-        return service.updateV3(person);
+        PersonV3 personV3 = service.updateV3(person);
+        personV3.add(linkTo(methodOn(PersonController.class).findByIdV3(personV3.getKey())).withSelfRel());
+        return personV3;
     }
 
     @DeleteMapping(value = "/v3/{id}")

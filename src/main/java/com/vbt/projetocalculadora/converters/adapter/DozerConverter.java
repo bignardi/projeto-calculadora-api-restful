@@ -1,4 +1,4 @@
-package com.vbt.projetocalculadora.util.converters.adapters;
+package com.vbt.projetocalculadora.converters.adapter;
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
