@@ -18,12 +18,8 @@ public class PersonV3 extends RepresentationModel<PersonV3> implements Serializa
     @JsonProperty("id")
     private Long key;
 
-    @JsonProperty("first_name")
     private String firstName;
-
-    @JsonProperty("last_name")
     private String lastName;
-
     private String address;
     private String gender;
     private Date birthday;

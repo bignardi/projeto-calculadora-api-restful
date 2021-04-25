@@ -16,11 +16,11 @@ import static org.junit.jupiter.api.TestInstance.Lifecycle.*;
 /**
  * @apiNote
  * Classe responsável por testes automatizados da entidade Person
- * Efetua as converesões de Person para PersonVO
+ * Efetua as conversões de Person para PersonVO
  */
 
 @TestInstance(PER_CLASS)
-public class DozerConverterTest {
+public class DozerConverterPersonTest {
 
     // Obj de entrada
     PersonMock inputObject;

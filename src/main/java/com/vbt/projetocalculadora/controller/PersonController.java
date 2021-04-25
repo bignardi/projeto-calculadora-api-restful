@@ -3,6 +3,8 @@ package com.vbt.projetocalculadora.controller;
 import com.vbt.projetocalculadora.domain.vo.v3.PersonV3;
 import com.vbt.projetocalculadora.repositories.PersonRepository;
 import com.vbt.projetocalculadora.services.PersonService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.util.List;
 
+@Api(value = "Person Endpoint", description = "Description for Person", tags = {"Person Endpoint"}) // Modifica as descrições default do Swagger
 @RestController
 @RequestMapping("/api/person")
 public class PersonController {
@@ -67,6 +70,7 @@ public class PersonController {
 
     // -> Versão 3:
 
+    @ApiOperation(value = "Find All")
     @GetMapping(value = "/v3",
             produces = {"application/json", "application/xml", "application/x-yaml"})
     public List<PersonV3> findAllV3() {
@@ -75,6 +79,7 @@ public class PersonController {
         return personV3;
     }
 
+    @ApiOperation(value = "Find By ID")
     @GetMapping(value = "/v3/{id}",
             produces = {"application/json", "application/xml", "application/x-yaml"})
     public PersonV3 findByIdV3(@PathVariable("id") Long id) {
@@ -83,6 +88,7 @@ public class PersonController {
         return personV3;
     }
 
+    @ApiOperation(value = "Create Person")
     @PostMapping(value = "/v3",
             produces = {"application/json", "application/xml", "application/x-yaml"},
             consumes = {"application/json", "application/xml", "application/x-yaml"})
@@ -92,6 +98,7 @@ public class PersonController {
         return personV3;
     }
 
+    @ApiOperation(value = "Update Person")
     @PutMapping(value = "/v3",
             produces = {"application/json", "application/xml", "application/x-yaml"},
             consumes = {"application/json", "application/xml", "application/x-yaml"})
@@ -101,6 +108,7 @@ public class PersonController {
         return personV3;
     }
 
+    @ApiOperation(value = "Delete By ID")
     @DeleteMapping(value = "/v3/{id}")
     public ResponseEntity<Void> deleteV3(@PathVariable("id") Long id) {
         if (!repository.existsById(id)) {
