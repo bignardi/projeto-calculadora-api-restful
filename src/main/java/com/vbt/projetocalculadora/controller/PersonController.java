@@ -13,6 +13,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.util.List;
 
+// @CrossOrigin -> CORS
 @Api(value = "Person Endpoint", description = "Description for Person", tags = {"Person Endpoint"}) // Modifica as descrições default do Swagger
 @RestController
 @RequestMapping("/api/person")
@@ -70,7 +71,8 @@ public class PersonController {
 
     // -> Versão 3:
 
-    @ApiOperation(value = "Find All")
+    // @CrossOrigin(origins = "http://localhost:8080")
+    @ApiOperation(value = "Find All") // Swagger
     @GetMapping(value = "/v3",
             produces = {"application/json", "application/xml", "application/x-yaml"})
     public List<PersonV3> findAllV3() {
@@ -79,6 +81,7 @@ public class PersonController {
         return personV3;
     }
 
+    // @CrossOrigin(origins = {"http://localhost:8080", "https://documentation-vbt.netlify.app/"})
     @ApiOperation(value = "Find By ID")
     @GetMapping(value = "/v3/{id}",
             produces = {"application/json", "application/xml", "application/x-yaml"})

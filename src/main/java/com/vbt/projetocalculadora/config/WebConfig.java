@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
@@ -25,6 +26,13 @@ public class WebConfig implements WebMvcConfigurer {
     // Sobrecarga do método conversor YamlHttpConverter
     public void extendMessageYamlHttpConverter(List<HttpMessageConverter<?>> converter) {
         converter.add(new YamlHttpConverter());
+    }
+
+    // CORS adicionado globalmente.
+    // Por padrão, os métodos GET, POST, PUT e DELETE funcionam bem, para os demais é necessário o uso do allowedMethods() para declará-los
+    public void addCorsMapping(CorsRegistry registry) {
+        registry.addMapping("/**")
+        .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
     }
 
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
