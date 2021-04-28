@@ -37,28 +37,29 @@ public class WebConfig implements WebMvcConfigurer {
 
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 
-//        // Content Negotiation via EXTENSION
-//        // Ex: /api/person/v3/3.xml
-//        configurer.favorParameter(false)
-//                .ignoreAcceptHeader(false)
-//                .defaultContentType(MediaType.APPLICATION_JSON)
-//                .mediaType("json", MediaType.APPLICATION_JSON)
-//                .mediaType("xml", MediaType.APPLICATION_XML)
-//                .mediaType("x-yaml", MEDIA_TYPE_YAML);
+        /*
+        // Content Negotiation via EXTENSION
+        // Ex: /api/person/v3/3.xml
+        configurer.favorParameter(false)
+                .ignoreAcceptHeader(false)
+                .defaultContentType(MediaType.APPLICATION_JSON)
+                .mediaType("json", MediaType.APPLICATION_JSON)
+                .mediaType("xml", MediaType.APPLICATION_XML)
+                .mediaType("x-yaml", MEDIA_TYPE_YAML);
 
 
-//        // Content Negotiation via QUERY Parameter
-//        // Ex: /api/person/v3/3?mediaType=xml
-//        configurer.favorPathExtension(false)
-//                .favorParameter(true)
-//                .parameterName("mediaType")
-//                .ignoreAcceptHeader(true)
-//                .useRegisteredExtensionsOnly(false)
-//                .defaultContentType(MediaType.APPLICATION_JSON)
-//                .mediaType("json", MediaType.APPLICATION_JSON)
-//                .mediaType("xml", MediaType.APPLICATION_XML)
-//                .mediaType("x-yaml", MEDIA_TYPE_YAML);
-
+        // Content Negotiation via QUERY Parameter
+        // Ex: /api/person/v3/3?mediaType=xml
+        configurer.favorPathExtension(false)
+                .favorParameter(true)
+                .parameterName("mediaType")
+                .ignoreAcceptHeader(true)
+                .useRegisteredExtensionsOnly(false)
+                .defaultContentType(MediaType.APPLICATION_JSON)
+                .mediaType("json", MediaType.APPLICATION_JSON)
+                .mediaType("xml", MediaType.APPLICATION_XML)
+                .mediaType("x-yaml", MEDIA_TYPE_YAML);
+        */
 
         // Content Negotiation via HEADER Parameter
         // Passar o parâmetro no Header -> Accept + application/json

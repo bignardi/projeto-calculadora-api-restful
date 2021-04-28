@@ -1,1 +1,0 @@
-ALTER TABLE public.person ADD COLUMN birthday TIMESTAMP;
