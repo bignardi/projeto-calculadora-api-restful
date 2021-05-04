@@ -5,7 +5,7 @@ import com.vbt.projetocalculadora.converters.custom.BookConverter;
 import com.vbt.projetocalculadora.domain.model.Book;
 import com.vbt.projetocalculadora.domain.vo.v1.BookV1;
 import com.vbt.projetocalculadora.repositories.BookRepository;
-import com.vbt.projetocalculadora.services.exception.ResourceNotFoundException;
+import com.vbt.projetocalculadora.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

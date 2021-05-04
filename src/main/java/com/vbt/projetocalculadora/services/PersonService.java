@@ -3,7 +3,7 @@ package com.vbt.projetocalculadora.services;
 import com.vbt.projetocalculadora.domain.model.Person;
 import com.vbt.projetocalculadora.domain.vo.v3.PersonV3;
 import com.vbt.projetocalculadora.repositories.PersonRepository;
-import com.vbt.projetocalculadora.services.exception.ResourceNotFoundException;
+import com.vbt.projetocalculadora.exception.ResourceNotFoundException;
 import com.vbt.projetocalculadora.converters.adapter.DozerConverter;
 import com.vbt.projetocalculadora.converters.custom.PersonConverter;
 import org.springframework.beans.factory.annotation.Autowired;

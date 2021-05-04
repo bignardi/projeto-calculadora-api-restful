@@ -1,4 +1,4 @@
-package com.vbt.projetocalculadora.services.exception;
+package com.vbt.projetocalculadora.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
