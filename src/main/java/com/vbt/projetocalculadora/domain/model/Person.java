@@ -3,6 +3,7 @@ package com.vbt.projetocalculadora.domain.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "person")
@@ -27,15 +28,19 @@ public class Person implements Serializable {
     @Column(length = 6)
     private String gender;
 
+    @Column(nullable = false)
+    private Boolean enabled;
+
     public Person() {
     }
 
-    public Person(Long id, String firstName, String lastName, String address, String gender) {
+    public Person(Long id, String firstName, String lastName, String address, String gender, Boolean enabled) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.gender = gender;
+        this.enabled = enabled;
     }
 
     public Long getId() {
@@ -78,22 +83,29 @@ public class Person implements Serializable {
         this.gender = gender;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Person person = (Person) o;
-
-        if (id != null ? !id.equals(person.id) : person.id != null) return false;
-        if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null) return false;
-        if (address != null ? !address.equals(person.address) : person.address != null) return false;
-        return gender != null ? gender.equals(person.gender) : person.gender == null;
+        return Objects.equals(id, person.id)
+                && Objects.equals(firstName, person.firstName)
+                && Objects.equals(lastName, person.lastName)
+                && Objects.equals(address, person.address)
+                && Objects.equals(gender, person.gender)
+                && Objects.equals(enabled, person.enabled);
     }
 
     @Override
     public int hashCode() {
-        return 0;
+        return Objects.hash(id, firstName, lastName, address, gender, enabled);
     }
 }

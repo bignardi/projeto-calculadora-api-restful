@@ -111,6 +111,15 @@ public class PersonController {
         return personV3;
     }
 
+    @ApiOperation(value = "Disable By ID")
+    @PatchMapping(value = "/v3/{id}",
+            produces = {"application/json", "application/xml", "application/x-yaml"})
+    public PersonV3 disablePerson(@PathVariable("id") Long id) {
+        PersonV3 personV3 = service.disablePerson(id);
+        personV3.add(linkTo(methodOn(PersonController.class).findByIdV3(id)).withSelfRel());
+        return personV3;
+    }
+
     @ApiOperation(value = "Delete By ID")
     @DeleteMapping(value = "/v3/{id}")
     public ResponseEntity<Void> deleteV3(@PathVariable("id") Long id) {

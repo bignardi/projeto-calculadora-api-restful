@@ -3,6 +3,7 @@ package com.vbt.projetocalculadora.controller;
 import com.vbt.projetocalculadora.repositories.UserRepository;
 import com.vbt.projetocalculadora.security.AccountCredentialsVO;
 import com.vbt.projetocalculadora.security.jwt.JwtTokenProvider;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.http.ResponseEntity.ok;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
+@Api(tags = "Authentication Endpoint")
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
@@ -31,7 +33,8 @@ public class AuthenticationController {
     @Autowired
     private UserRepository repository;
 
-    @ApiOperation(value = "Authentication a user by credentials")
+    @ApiOperation(value = "Authentication a user and returns a token")
+    @SuppressWarnings("rawtypes")
     @PostMapping(value = "/signin",
             produces = {"application/json", "application/xml", "application/x-yaml"},
             consumes = {"application/json", "application/xml", "application/x-yaml"})

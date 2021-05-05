@@ -8,6 +8,7 @@ import com.vbt.projetocalculadora.converters.adapter.DozerConverter;
 import com.vbt.projetocalculadora.converters.custom.PersonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -99,6 +100,14 @@ public class PersonService {
 
         var vo = DozerConverter.parseObject(repository.save(entity), PersonV3.class);
         return vo;
+    }
+
+    @Transactional
+    public PersonV3 disablePerson(Long id) {
+        repository.disablePerson(id);
+        var entity = repository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("ID not found!"));
+        return DozerConverter.parseObject(entity, PersonV3.class);
     }
 
     public void deleteV3(Long id) {

@@ -10,7 +10,7 @@ import java.util.Objects;
 import org.springframework.hateoas.RepresentationModel;
 
 // Ajusta a ordem dos resultados no JSON
-@JsonPropertyOrder({"id", "firs_tName", "last_Name", "address", "gender", "birthday"})
+@JsonPropertyOrder({"id", "firs_tName", "last_Name", "address", "gender", "enabled"})
 public class PersonV3 extends RepresentationModel<PersonV3> implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -23,17 +23,19 @@ public class PersonV3 extends RepresentationModel<PersonV3> implements Serializa
     private String address;
     private String gender;
     private Date birthday;
+    private Boolean enabled;
 
     public PersonV3() {
     }
 
-    public PersonV3(Long key, String firstName, String lastName, String address, String gender, Date birthday) {
+    public PersonV3(Long key, String firstName, String lastName, String address, String gender, Date birthday, Boolean enabled) {
         this.key = key;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.gender = gender;
         this.birthday = birthday;
+        this.enabled = enabled;
     }
 
     public Long getKey() {
@@ -84,6 +86,14 @@ public class PersonV3 extends RepresentationModel<PersonV3> implements Serializa
         this.birthday = birthday;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,11 +105,13 @@ public class PersonV3 extends RepresentationModel<PersonV3> implements Serializa
                 && Objects.equals(lastName, personV3.lastName)
                 && Objects.equals(address, personV3.address)
                 && Objects.equals(gender, personV3.gender)
-                && Objects.equals(birthday, personV3.birthday);
+                && Objects.equals(birthday, personV3.birthday)
+                && Objects.equals(enabled, personV3.enabled);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), key, firstName, lastName, address, gender, birthday);
+        return Objects.hash(super.hashCode(), key, firstName, lastName, address, gender, birthday, enabled);
     }
+
 }
